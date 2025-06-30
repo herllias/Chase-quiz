@@ -1,0 +1,17 @@
+<div class="question-card">
+  <h2 class="question-text">{{ question.text }}</h2>
+  <div class="options-grid">
+    <button
+      *ngFor="let option of question.options"
+      class="option-button"
+      [ngClass]="{
+        'correct': selectedOption === option && option.isCorrect,
+        'incorrect': selectedOption === option && !option.isCorrect
+      }"
+      (click)="selectOption(option)"
+      [disabled]="selectedOption"
+    >
+      {{ option.text }}
+    </button>
+  </div>
+</div>

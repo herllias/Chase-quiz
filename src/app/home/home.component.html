@@ -1,0 +1,27 @@
+<div class="home-container">
+  <div class="card">
+    <h1 class="title">Chase Quiz</h1>
+    <p class="subtitle">Entrez les noms des joueurs pour commencer</p>
+    <div class="form-group">
+      <input
+        type="text"
+        class="name-input"
+        placeholder="Nom du Joueur 1"
+        [(ngModel)]="player1Name"
+      />
+      <input
+        type="text"
+        class="name-input"
+        placeholder="Nom du Joueur 2"
+        [(ngModel)]="player2Name"
+      />
+    </div>
+    <button
+      class="start-button"
+      (click)="startGame()"
+      [disabled]="!player1Name || !player2Name"
+    >
+      Démarrer le Quiz
+    </button>
+  </div>
+</div>

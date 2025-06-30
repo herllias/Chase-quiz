@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.question-card {
+  @include card-style;
+}
+
+.question-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $primary-text;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-unit;
+}
+
+.option-button {
+  @include button-style;
+
+  &.correct {
+    background-color: $success-color;
+    color: #ffffff;
+    border-color: $success-color;
+  }
+
+  &.incorrect {
+    background-color: $error-color;
+    color: #ffffff;
+    border-color: $error-color;
+  }
+}

@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.transition-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  @include card-style;
+  max-width: 450px;
+  text-align: center;
+}
+
+.message {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: $primary-text;
+  margin-bottom: $spacing-unit;
+}
+
+.instruction {
+  font-size: 1.2rem;
+  color: $secondary-text;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.continue-button {
+  @include button-style;
+  background-color: $accent-color;
+  color: #ffffff;
+  padding: $spacing-unit $spacing-unit * 2;
+}

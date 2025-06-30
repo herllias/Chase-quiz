@@ -1,0 +1,7 @@
+<div class="quiz-container" *ngIf="questions.length > 0">
+  <div class="player-turn">Tour de {{ currentPlayerName }}</div>
+  <app-question
+    [question]="questions[currentQuestionIndex]"
+    (answer)="handleAnswer($event)"
+  ></app-question>
+</div>

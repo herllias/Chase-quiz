@@ -1,0 +1,13 @@
+@use '../../styles/variables' as *;
+
+.quiz-container {
+  width: 100%;
+}
+
+.player-turn {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $secondary-text;
+  margin-bottom: $spacing-unit * 2;
+}

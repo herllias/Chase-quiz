@@ -1,0 +1,21 @@
+<div class="results-container">
+  <div class="card">
+    <h1 class="title">Résultats</h1>
+    <div class="scores">
+      <div class="player-score">
+        <span class="player-name">{{ player1Name }}</span>
+        <span class="score">{{ player1Score }} / {{ quizService.player1Questions.length }}</span>
+      </div>
+      <div class="player-score">
+        <span class="player-name">{{ player2Name }}</span>
+        <span class="score">{{ player2Score }} / {{ quizService.player2Questions.length }}</span>
+      </div>
+    </div>
+    <h2 class="winner-text">
+      {{ funMessage }}
+    </h2>
+    <button class="restart-button" (click)="restartGame()">
+      Rejouer
+    </button>
+  </div>
+</div>

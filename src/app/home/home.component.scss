@@ -1,0 +1,63 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  @include card-style;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $primary-text;
+  margin-bottom: $spacing-unit * 0.5;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: $secondary-text;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-unit * 1.5;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.name-input {
+  width: 100%;
+  padding: $spacing-unit;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba($accent-color, 0.2);
+  }
+}
+
+.start-button {
+  @include button-style;
+  background-color: $accent-color;
+  color: #ffffff;
+  width: 100%;
+  padding: $spacing-unit * 1.2;
+  font-size: 1.1rem;
+
+  &:disabled {
+    background-color: #dcdcdc;
+    cursor: not-allowed;
+  }
+}

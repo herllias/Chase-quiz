@@ -1,0 +1,60 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.results-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  @include card-style;
+  max-width: 500px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-unit * 1.5;
+  margin-bottom: $spacing-unit * 2;
+  width: 100%;
+}
+
+.player-score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary-background;
+  padding: $spacing-unit;
+  border-radius: 10px;
+}
+
+.player-name {
+  font-weight: 600;
+}
+
+.score {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.winner-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $accent-color;
+  margin-bottom: $spacing-unit * 2;
+}
+
+.restart-button {
+  @include button-style;
+  background-color: $accent-color;
+  color: #ffffff;
+  width: 100%;
+}

@@ -1,0 +1,42 @@
+@use 'variables' as *;
+@use 'sass:color';
+
+@mixin card-style {
+  background-color: $card-background;
+  border-radius: 20px;
+  padding: $spacing-unit * 2;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+@mixin button-style {
+  background-color: color.adjust($primary-background, $lightness: -2%);
+  color: $primary-text;
+  border: 1px solid color.adjust($primary-background, $lightness: -10%);
+  border-radius: 12px;
+  padding: $spacing-unit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: color.adjust($primary-background, $lightness: -5%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  &.selected {
+    background-color: $accent-color;
+    color: #ffffff;
+    border-color: $accent-color;
+  }
+}
