@@ -1,5 +1,7 @@
 @use 'variables' as *;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 body {
   background-color: #f0f2f5; // A light grey background for a modern look
   font-family: $primary-font;

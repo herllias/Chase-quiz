@@ -41,6 +41,12 @@
   font-size: 1rem;
   box-sizing: border-box;
 
+  &::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: $secondary-text;
+  }
+
   &:focus {
     outline: none;
     border-color: $accent-color;
