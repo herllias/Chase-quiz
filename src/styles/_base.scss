@@ -1,7 +1,7 @@
 @use 'variables' as *;
 
 body {
-  background-color: $primary-background;
+  background-color: #f0f2f5; // A light grey background for a modern look
   font-family: $primary-font;
   color: $primary-text;
   margin: 0;

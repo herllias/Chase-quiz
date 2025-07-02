@@ -1,0 +1,42 @@
+<div class="question-input-container">
+  <h2>{{ currentPlayerName }}, saisissez vos questions ({{ questionCount }}/{{ maxQuestions }})</h2>
+
+  <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="questions">
+      <div *ngFor="let questionGroup of questions.controls; let i = index" [formGroupName]="i" class="question-group-card">
+        <h3>Question {{ i + 1 }}</h3>
+        <button type="button" (click)="removeQuestion(i)" class="remove-question-button" *ngIf="questions.length > 1">Supprimer la question</button>
+
+        <div class="form-field">
+          <label for="questionText{{i}}">Texte de la question:</label>
+          <input id="questionText{{i}}" type="text" formControlName="text" placeholder="Votre question...">
+          <div *ngIf="questionGroup.get('text')?.invalid && questionGroup.get('text')?.touched" class="error-message">
+            Le texte de la question est requis.
+          </div>
+        </div>
+
+        <div formArrayName="options" class="options-section">
+          <h4>Options de réponse:</h4>
+          <div *ngFor="let optionGroup of questionOptions(i).controls; let j = index" [formGroupName]="j" class="option-group">
+            <div class="form-field option-field">
+              <input type="text" formControlName="text" placeholder="Option {{ j + 1 }}...">
+              <input type="radio" name="correctOption{{i}}" [value]="j" (change)="setCorrectOption(i, j)" [checked]="optionGroup.get('isCorrect')?.value">
+              <label>Correcte</label>
+              <button type="button" (click)="removeOption(i, j)" class="remove-option-button" *ngIf="questionOptions(i).length > 2">X</button>
+            </div>
+            <div *ngIf="optionGroup.get('text')?.invalid && optionGroup.get('text')?.touched" class="error-message">
+              Le texte de l'option est requis.
+            </div>
+          </div>
+          <button type="button" (click)="addOption(i)" class="add-option-button">Ajouter une option</button>
+        </div>
+        <div *ngIf="questionGroup.get('correctOptionIndex')?.invalid && questionGroup.get('correctOptionIndex')?.touched" class="error-message">
+          Veuillez sélectionner une bonne réponse.
+        </div>
+      </div>
+    </div>
+
+    <button type="button" (click)="addQuestion()" class="add-question-button" *ngIf="questionCount < maxQuestions">Ajouter une question</button>
+    <button type="submit" [disabled]="questionForm.invalid" class="submit-questions-button">Soumettre les questions</button>
+  </form>
+</div>

@@ -55,6 +55,13 @@
   width: 100%;
   padding: $spacing-unit * 1.2;
   font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
   &:disabled {
     background-color: #dcdcdc;

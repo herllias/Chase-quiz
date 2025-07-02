@@ -20,7 +20,7 @@ export class HomeComponent {
   startGame(): void {
     if (this.player1Name && this.player2Name) {
       this.quizService.setPlayerNames(this.player1Name, this.player2Name);
-      this.router.navigate(['/quiz']);
+      this.router.navigate(['/input-questions']);
     }
   }
 }

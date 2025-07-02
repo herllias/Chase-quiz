@@ -1,0 +1,193 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.question-input-container {
+  @include card-style;
+  max-width: 800px;
+  margin: $spacing-unit * 4 auto;
+  padding: $spacing-unit * 3;
+
+  h2 {
+    font-size: 2rem;
+    color: $primary-text;
+    text-align: center;
+    margin-bottom: $spacing-unit * 3;
+  }
+
+  .question-group-card {
+    @include card-style;
+    margin-bottom: $spacing-unit * 2;
+    padding: $spacing-unit * 2;
+    border: 1px solid $secondary-text;
+    position: relative;
+
+    h3 {
+      font-size: 1.4rem;
+      color: $primary-text;
+      margin-bottom: $spacing-unit * 1.5;
+    }
+
+    .remove-question-button {
+      position: absolute;
+      top: $spacing-unit;
+      right: $spacing-unit;
+      background-color: $error-color;
+      color: white;
+      border: none;
+      border-radius: $border-radius;
+      padding: $spacing-unit / 2 $spacing-unit;
+      cursor: pointer;
+      font-size: 0.8rem;
+
+      &:hover {
+        background-color: darken($error-color, 10%);
+      }
+    }
+  }
+
+  .form-field {
+    margin-bottom: $spacing-unit * 1.5;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: $spacing-unit / 2;
+      color: $primary-text;
+    }
+
+    input[type="text"] {
+      width: calc(100% - #{$spacing-unit * 2});
+      padding: $spacing-unit;
+      border: 1px solid $secondary-text;
+      border-radius: $border-radius;
+      font-size: 1rem;
+      background-color: $card-background;
+      color: $primary-text;
+
+      &::placeholder {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem; // Reduced size
+        color: lighten($secondary-text, 10%);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $accent-color;
+        box-shadow: 0 0 0 2px rgba($accent-color, 0.2);
+      }
+    }
+
+    .error-message {
+      color: $error-color;
+      font-size: 0.85rem;
+      margin-top: $spacing-unit / 2;
+    }
+  }
+
+  .options-section {
+    margin-top: $spacing-unit * 2;
+    border-top: 1px solid lighten($secondary-text, 20%);
+    padding-top: $spacing-unit * 1.5;
+
+    h4 {
+      font-size: 1.2rem;
+      color: $primary-text;
+      margin-bottom: $spacing-unit;
+    }
+
+    .option-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: $spacing-unit;
+
+      .option-field {
+        flex-grow: 1;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+
+        input[type="text"] {
+          flex-grow: 1;
+          margin-right: $spacing-unit;
+        }
+
+        input[type="radio"] {
+          margin-right: $spacing-unit / 2;
+          cursor: pointer;
+        }
+
+        label {
+          margin-right: $spacing-unit;
+          margin-bottom: 0;
+          font-weight: normal;
+        }
+
+        .remove-option-button {
+          background-color: $error-color;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          width: 25px;
+          height: 25px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          font-size: 0.8rem;
+          flex-shrink: 0;
+
+          &:hover {
+            background-color: darken($error-color, 10%);
+          }
+        }
+      }
+    }
+
+    .add-option-button {
+      @include button-style;
+      background-color: $accent-color;
+      color: white;
+      border-color: $accent-color;
+      margin-top: $spacing-unit;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+
+      &:hover {
+        background-color: darken($accent-color, 10%);
+      }
+    }
+  }
+
+  .add-question-button,
+  .submit-questions-button {
+    @include button-style;
+    width: 100%;
+    margin-top: $spacing-unit * 3;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  .add-question-button {
+    background-color: $secondary-text;
+    border-color: $secondary-text;
+
+    &:hover {
+      background-color: darken($secondary-text, 10%);
+    }
+  }
+
+  .submit-questions-button {
+    background-color: $success-color;
+    border-color: $success-color;
+
+    &:hover {
+      background-color: darken($success-color, 10%);
+    }
+
+    &:disabled {
+      background-color: lighten($secondary-text, 10%);
+      border-color: lighten($secondary-text, 10%);
+      cursor: not-allowed;
+    }
+  }
+}

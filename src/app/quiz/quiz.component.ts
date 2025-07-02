@@ -22,6 +22,12 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Ensure we are in a valid quiz turn state, otherwise redirect
+    if (this.quizService.gameState.value !== 'player1_turn' && this.quizService.gameState.value !== 'player2_turn') {
+      this.router.navigate(['/input-questions']); // Or '/' depending on desired flow
+      return;
+    }
+
     this.questions = this.quizService.getQuestions();
     this.currentPlayerName = this.quizService.getCurrentPlayerName();
 

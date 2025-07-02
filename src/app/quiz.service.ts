@@ -12,144 +12,21 @@ export interface Option {
   isCorrect: boolean;
 }
 
-export type GameState = 'setup' | 'player1_turn' | 'transition' | 'player2_turn' | 'results';
+export type GameState = 'setup' | 'player1_question_input' | 'player2_question_input' | 'player1_turn' | 'transition' | 'player2_turn' | 'results';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   public questionTimeLimit: number = 10; // Time limit for each question in seconds
-  public player1Questions: Question[] = [
-    {
-      id: 1,
-      text: 'Quelles sont mes couleurs préfréré ?',
-      options: [
-        { text: 'bordeau-bleue', isCorrect: true },
-        { text: 'mauve-rose', isCorrect: false },
-        { text: 'violet-rouge', isCorrect: false }
-      ]
-    },
-    {
-      id: 2,
-      text: 'Quel est mon style de coiffure ?',
-      options: [
-        { text: 'mèche', isCorrect: false },
-        { text: 'afro-naturel', isCorrect: true },
-        { text: 'meche', isCorrect: false }
-      ]
-    },
-    {
-      id: 3,
-      text: 'Quelle est ma date de naissance ?',
-      options: [
-        { text: '22/12/2003', isCorrect: true },
-        { text: '23/12/2003', isCorrect: false },
-        { text: '22/10/2003', isCorrect: false }
-      ]
-    },
-    {
-      id: 4,
-      text: "Entre les baskets et les sandales, qu'est-ce que je préfère?",
-      options: [
-        { text: 'les sandales', isCorrect: false },
-        { text: 'les baskets', isCorrect: false },
-        { text: 'les deux', isCorrect: true }
-      ]
-    },
-    {
-      id: 5,
-      text: 'Quel est mon style vestimentaire ?',
-      options: [
-        { text: 'style court-sexy', isCorrect: false },
-        { text: 'tendance-classe', isCorrect: true },
-        { text: 'ordinaire', isCorrect: false }
-      ]
-    },
-    {
-      id: 6,
-      text: "qu'est-ce qui te plait chez moi ?",
-      options: [
-        { text: 'mes formes', isCorrect: false },
-        { text: 'mon comportement', isCorrect: false },
-        { text: 'les deux', isCorrect: true }
-      ]
-    },
-    {
-      id: 7,
-      text: 'Quels sont mes passe-temps ?',
-      options: [
-        { text: 'voyage-dormir', isCorrect: false },
-        { text: 'télé-manger', isCorrect: false },
-        { text: 'shooping-balade-chant-manger', isCorrect: true }
-      ]
-    }
-  ];
 
-  public player2Questions: Question[] = [
-    {
-      id: 1,
-      text: 'Quelle est ma couleur préfèré ?',
-      options: [
-        { text: 'Blanc', isCorrect: false },
-        { text: 'Gris', isCorrect: true },
-        { text: 'Marron', isCorrect: false }
-      ]
-    },
-    {
-      id: 2,
-      text: 'Quelle est ma chemise préfèré?',
-      options: [
-        { text: 'Model jeans bleu', isCorrect: false },
-        { text: 'Polo Gris', isCorrect: true },
-        { text: 'Polo Noir', isCorrect: false }
-      ]
-    },
-    {
-      id: 3,
-      text: 'Quelle est mon sport visuel préfèré ?',
-      options: [
-        { text: 'Tennis', isCorrect: false },
-        { text: 'Basketball', isCorrect: true },
-        { text: 'Football', isCorrect: false }
-      ]
-    },
-    {
-      id: 4,
-      text: 'Quelle sont mes objectifs dans la vie ?',
-      options: [
-        { text: 'Visiter le monde', isCorrect: false },
-        { text: 'Devenir Doctorant', isCorrect: false },
-        { text: 'Faire beaucoup d\'argent', isCorrect: true }
-      ]
-    },
-    {
-      id: 5,
-      text: "Pourquoi je t'aime ?",
-      options: [
-        { text: 'Mon attention', isCorrect: true },
-        { text: 'Mon comportement', isCorrect: false },
-        { text: 'Ma beauté', isCorrect: false }
-      ]
-    },
-    {
-      id: 6,
-      text: 'Quel est mon plat préfèré ?',
-      options: [
-        { text: 'Tchiep-viande-choux-patate', isCorrect: true },
-        { text: 'Saka-Saka', isCorrect: false },
-        { text: 'Babine à la sauce', isCorrect: false }
-      ]
-    },
-    {
-      id: 7,
-      text: "Qu'est ce que tu apprécie de moi ?",
-      options: [
-        { text: 'Mon calme', isCorrect: false },
-        { text: 'Ma beauté', isCorrect: false },
-        { text: 'Ma façon de te parler', isCorrect: true }
-      ]
-    }
-  ];
+  // Default questions (can be empty or pre-defined if needed)
+  public player1Questions: Question[] = [];
+  public player2Questions: Question[] = [];
+
+  // Custom questions entered by players
+  public player1CustomQuestions: Question[] = [];
+  public player2CustomQuestions: Question[] = [];
 
   public gameState = new BehaviorSubject<GameState>('setup');
   gameState$ = this.gameState.asObservable();
@@ -164,11 +41,15 @@ export class QuizService {
   setPlayerNames(name1: string, name2: string): void {
     this.player1Name = name1;
     this.player2Name = name2;
-    this.gameState.next('player1_turn');
+    this.gameState.next('player1_question_input'); // Start with player 1 question input
   }
 
   getQuestions(): Question[] {
-    return this.gameState.value === 'player1_turn' ? this.player1Questions : this.player2Questions;
+    if (this.gameState.value === 'player1_turn') {
+      return this.player1CustomQuestions.length > 0 ? this.player1CustomQuestions : this.player1Questions;
+    } else {
+      return this.player2CustomQuestions.length > 0 ? this.player2CustomQuestions : this.player2Questions;
+    }
   }
 
   getCurrentPlayerName(): string {
@@ -202,6 +83,16 @@ export class QuizService {
     this.player2Score = 0;
     this.player1CurrentQuestionIndex = 0;
     this.player2CurrentQuestionIndex = 0;
+    this.player1CustomQuestions = []; // Clear custom questions
+    this.player2CustomQuestions = []; // Clear custom questions
     this.gameState.next('setup');
+  }
+
+  addPlayer1Question(question: Question): void {
+    this.player1CustomQuestions.push(question);
+  }
+
+  addPlayer2Question(question: Question): void {
+    this.player2CustomQuestions.push(question);
   }
 }

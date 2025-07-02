@@ -3,34 +3,50 @@
 
 @mixin card-style {
   background-color: $card-background;
-  border-radius: 20px;
-  padding: $spacing-unit * 2;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  border-radius: $border-radius * 2.5; // Larger border-radius for cards
+  padding: $spacing-unit * 2.5;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   margin: auto;
+  border: 1px solid lighten($secondary-text, 25%); // Subtle border
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+  }
 }
 
 @mixin button-style {
-  background-color: color.adjust($primary-background, $lightness: -2%);
-  color: $primary-text;
-  border: 1px solid color.adjust($primary-background, $lightness: -10%);
-  border-radius: 12px;
-  padding: $spacing-unit;
-  font-size: 1rem;
-  font-weight: 500;
+  background-color: $accent-color;
+  color: #ffffff;
+  border: 1px solid $accent-color;
+  border-radius: $border-radius; // Use variable for consistency
+  padding: $spacing-unit * 0.8 $spacing-unit * 1.5;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: color.adjust($primary-background, $lightness: -5%);
+    background-color: $accent-color-dark;
+    border-color: $accent-color-dark;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
 
   &:active {
     transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  &:disabled {
+    background-color: lighten($secondary-text, 15%);
+    border-color: lighten($secondary-text, 15%);
+    cursor: not-allowed;
     box-shadow: none;
   }
 
