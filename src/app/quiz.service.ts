@@ -57,16 +57,18 @@ export class QuizService {
   }
 
   submitAnswer(isCorrect: boolean): void {
+    const player1Questions = this.getQuestions();
+    const player2Questions = this.getQuestions();
     if (this.gameState.value === 'player1_turn') {
       if (isCorrect) this.player1Score++;
       this.player1CurrentQuestionIndex++;
-      if (this.player1CurrentQuestionIndex >= this.player1Questions.length) {
+      if (this.player1CurrentQuestionIndex >= player1Questions.length) {
         this.gameState.next('transition');
       }
     } else if (this.gameState.value === 'player2_turn') {
       if (isCorrect) this.player2Score++;
       this.player2CurrentQuestionIndex++;
-      if (this.player2CurrentQuestionIndex >= this.player2Questions.length) {
+      if (this.player2CurrentQuestionIndex >= player2Questions.length) {
         this.gameState.next('results');
       }
     }
