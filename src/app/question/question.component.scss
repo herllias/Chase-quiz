@@ -3,6 +3,21 @@
 
 .question-card {
   @include card-style;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center items horizontally
+}
+
+.timer {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: $accent-color;
+  background-color: $card-background;
+  padding: $spacing-unit / 2 $spacing-unit;
+  border-radius: $border-radius;
+  border: 2px solid $accent-color;
+  margin-bottom: $spacing-unit; // Space between timer and question text
 }
 
 .question-text {
@@ -10,12 +25,14 @@
   font-weight: 600;
   color: $primary-text;
   margin-bottom: $spacing-unit * 2;
+  text-align: center; // Center question text
 }
 
 .options-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: $spacing-unit;
+  width: 100%; // Ensure grid takes full width
 }
 
 .option-button {
@@ -31,5 +48,18 @@
     background-color: $error-color;
     color: #ffffff;
     border-color: $error-color;
+  }
+}
+
+.next-question-button {
+  @include button-style;
+  margin-top: $spacing-unit * 2;
+  background-color: $accent-color;
+  color: #ffffff;
+  border-color: $accent-color;
+
+  &:hover {
+    background-color: $accent-color-dark;
+    border-color: $accent-color-dark;
   }
 }

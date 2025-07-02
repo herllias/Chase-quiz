@@ -18,6 +18,7 @@ export type GameState = 'setup' | 'player1_turn' | 'transition' | 'player2_turn'
   providedIn: 'root'
 })
 export class QuizService {
+  public questionTimeLimit: number = 10; // Time limit for each question in seconds
   public player1Questions: Question[] = [
     {
       id: 1,

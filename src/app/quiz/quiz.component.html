@@ -2,6 +2,7 @@
   <div class="player-turn">Tour de {{ currentPlayerName }}</div>
   <app-question
     [question]="questions[currentQuestionIndex]"
+    [timeLimit]="questionTimeLimit"
     (answer)="handleAnswer($event)"
   ></app-question>
 </div>

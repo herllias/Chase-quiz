@@ -1,4 +1,5 @@
 <div class="question-card">
+  <div class="timer">{{ timer }}s</div>
   <h2 class="question-text">{{ question.text }}</h2>
   <div class="options-grid">
     <button
@@ -9,9 +10,12 @@
         'incorrect': selectedOption === option && !option.isCorrect
       }"
       (click)="selectOption(option)"
-      [disabled]="selectedOption"
+      [disabled]="selectedOption || isTimeUp"
     >
       {{ option.text }}
     </button>
   </div>
+  <button *ngIf="isTimeUp" class="next-question-button" (click)="nextQuestion()">
+    Question Suivante
+  </button>
 </div>

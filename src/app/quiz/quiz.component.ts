@@ -15,8 +15,11 @@ export class QuizComponent implements OnInit {
   questions: Question[] = [];
   currentQuestionIndex = 0;
   currentPlayerName = '';
+  questionTimeLimit: number; // Add this property
 
-  constructor(private quizService: QuizService, private router: Router) {}
+  constructor(private quizService: QuizService, private router: Router) {
+    this.questionTimeLimit = this.quizService.questionTimeLimit; // Initialize it here
+  }
 
   ngOnInit(): void {
     this.questions = this.quizService.getQuestions();
