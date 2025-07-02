@@ -1,5 +1,8 @@
 <div class="question-card">
   <div class="timer">{{ timer }}s</div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" [style.width.%]="(timer / timeLimit) * 100"></div>
+  </div>
   <h2 class="question-text">{{ question.text }}</h2>
   <div class="options-grid">
     <button
