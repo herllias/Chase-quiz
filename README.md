@@ -4,7 +4,7 @@ Bienvenue dans **Chase Quiz**, une application de quiz interactive conçue pour 
 
 ## Description du Projet
 
-Chase Quiz est une application web développée avec Angular qui permet à deux joueurs de s'affronter dans un quiz. Chaque joueur répond à un ensemble de questions qui lui sont propres, rendant l'expérience unique pour chacun. À la fin du quiz, les scores sont affichés et un message amusant et personnalisé est généré pour célébrer le gagnant (ou l'égalité !).
+Chase Quiz est une application web qui permet à deux joueurs de s'affronter dans un quiz. Chaque joueur répond à un ensemble de questions qui lui sont propres, rendant l'expérience unique pour chacun.
 
 ## Fonctionnalités
 
@@ -12,7 +12,7 @@ Chase Quiz est une application web développée avec Angular qui permet à deux 
 *   **Gestion des Joueurs**: Saisie des noms des joueurs au début du jeu.
 *   **Suivi des Scores**: Les scores sont maintenus séparément pour chaque joueur.
 *   **Écran de Transition**: Un écran de transition convivial entre les tours des joueurs.
-*   **Résultats Amusants**: Affichage des scores finaux avec un message personnalisé et des emojis pour le gagnant.
+*   **Résultats Amusants**: Affichage des scores finaux avec un message personnalisé.
 *   **Réinitialisation du Jeu**: Possibilité de rejouer facilement.
 
 ## Technologies Utilisées
